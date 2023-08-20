@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "client")
@@ -22,6 +24,7 @@ public class Client {
     private String name;
 
     @NotBlank
+    @Size(min = 18, max = 18)
     @Column(name = "cnpj", unique=true)
     private String cnpj;
 
@@ -31,11 +34,11 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    @NotBlank
+    @NotNull
     @Column(name = "latitude")
     private double latitude;
 
-    @NotBlank
+    @NotNull
     @Column(name = "longitude")
     private double longitude;
 
