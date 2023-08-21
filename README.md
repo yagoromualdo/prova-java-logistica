@@ -1,4 +1,4 @@
-# Tecnologias utilizadas no desenvolvimento: Angular e Spring
+## Tecnologias utilizadas no desenvolvimento: Angular e Spring
 <br>
 Versões: Spring Boot(3.1.2) - Java(17) - Angular(15.0.0)
 <br><br>
