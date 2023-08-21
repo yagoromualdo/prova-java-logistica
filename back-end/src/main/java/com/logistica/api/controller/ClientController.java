@@ -20,12 +20,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/client")
-@Tag(name = "Cliente/Client", description = "Cadastro manual externo")
-public class ClientContoller extends ResponseAbstractController {
+@Tag(name = "Cliente/Client")
+public class ClientController extends ResponseAbstractController {
 
     private ClientService clientService;
 
-    public ClientContoller(ClientService clientService) {
+    public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
 
@@ -43,7 +43,7 @@ public class ClientContoller extends ResponseAbstractController {
 
     @Operation(description = "Salva um novo cliente")
     @PostMapping
-    public ResponseEntity<?> save(@Validated @RequestBody Client client) {
+    public ResponseEntity<?> create(@Validated @RequestBody Client client) {
         return jsonResponse(clientService.create(client));
     }
 
@@ -56,7 +56,8 @@ public class ClientContoller extends ResponseAbstractController {
     @Operation(description = "Exclui um cliente de acordo com o id")
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteById(@PathVariable long id) {
-        return jsonResponse(clientService.findById(id));
+        clientService.delete(id);
+        return jsonResponse();
     }
 
 }

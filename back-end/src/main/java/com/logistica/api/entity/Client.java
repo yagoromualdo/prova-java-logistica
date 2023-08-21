@@ -35,12 +35,12 @@ public class Client {
     private String email;
 
     @NotNull
-    @Column(name = "latitude")
-    private double latitude;
+    @Column(name = "lat")
+    private double lat;
 
     @NotNull
-    @Column(name = "longitude")
-    private double longitude;
+    @Column(name = "lng")
+    private double lng;
 
     public long getId() {
         return id;
@@ -82,20 +82,21 @@ public class Client {
         this.email = email;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public double getLng() {
+        return lng;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setLng(double lng) {
+        this.lng = lng;
     }
+
     
 }

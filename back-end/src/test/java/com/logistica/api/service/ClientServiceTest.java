@@ -46,15 +46,15 @@ public class ClientServiceTest {
         client1.setId(1L);
         client1.setName("Cliente 1");
         client1.setCnpj("00.000.000/0000-00");
-        client1.setLatitude(-16.328546);
-        client1.setLongitude(-48.953403);
+        client1.setLat(-16.328546);
+        client1.setLng(-48.953403);
 
         client2 = new Client();
         client2.setId(2L);
         client2.setName("Cliente 2");
         client2.setCnpj("11.111.111/1111-11");
-        client2.setLatitude(-16.328546);
-        client2.setLongitude(-48.953403);
+        client2.setLat(-16.328546);
+        client2.setLng(-48.953403);
 
         clients = List.of(client1, client2);
     }
@@ -108,8 +108,8 @@ public class ClientServiceTest {
     public void testCreateInvalid() {
         Client invalidClient = new Client();
         invalidClient.setName("Cliente Inválido");
-        invalidClient.setLatitude(-16.328546);
-        invalidClient.setLongitude(-48.953403);
+        invalidClient.setLat(-16.328546);
+        invalidClient.setLng(-48.953403);
 
         when(clientRepository.save(invalidClient)).thenThrow(new IllegalArgumentException("CNPJ is required"));
 
@@ -139,8 +139,8 @@ public class ClientServiceTest {
         nonExistingClient.setId(3L);
         nonExistingClient.setName("Cliente 3");
         nonExistingClient.setCnpj("22.222.222/2222-22");
-        nonExistingClient.setLatitude(-16.328546);
-        nonExistingClient.setLongitude(-48.953403);
+        nonExistingClient.setLat(-16.328546);
+        nonExistingClient.setLng(-48.953403);
 
         when(clientRepository.save(nonExistingClient)).thenThrow(new EntityNotFoundException("Client not found"));
 
