@@ -1,0 +1,26 @@
+.container-google-maps {
+  position: relative;
+}
+
+.buttons {
+  position: absolute;
+  top: 1rem;
+  right: 7rem;
+  z-index: 99;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btn-success {
+  margin-left: 1rem;
+}
+
+.info-window {
+  width: 200px;
+}
+
+.info-window p,
+.info-window h6 {
+  font-size: 13.5px;
+}

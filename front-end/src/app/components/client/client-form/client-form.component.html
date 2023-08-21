@@ -1,1 +1,131 @@
-<p>client-form works!</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="clientForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="item">
+            <app-field-validation [required]="true">
+              <label label for="name" class="form-label">Nome</label>
+              <input input formControlName="name" type="text" id="name" class="form-control" />
+            </app-field-validation>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item">
+            <app-field-validation [required]="true">
+              <label label for="cnpj" class="form-label">CNPJ</label>
+              <input input formControlName="cnpj" type="text" id="cnpj" class="form-control" />
+            </app-field-validation>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="item">
+            <label label for="email" class="form-label">Email</label>
+            <input input formControlName="email" type="text" id="email" class="form-control" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item">
+            <label label for="telephone" class="form-label">Telefone</label>
+            <input input #focus class="form-control" formControlName="telephone" matInput />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="item">
+            <app-field-validation [required]="true">
+              <label label for="lat" class="form-label">Latitude</label>
+              <input input formControlName="lat" type="number" id="lat" class="form-control" />
+            </app-field-validation>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item">
+            <app-field-validation [required]="true">
+              <label label for="lng" class="form-label">Longitude</label>
+              <input input formControlName="lng" type="number" id="lng" class="form-control" />
+            </app-field-validation>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="item col-mapa">
+            <label label class="form-label">Mapa</label>
+            <button type="button" class="btn btn-primary button-open-maps" data-bs-toggle="modal"
+              [disabled]="ariaDisabled" data-bs-target="#exampleModal">
+              <i class="bi bi-map"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="buttons">
+          <div *ngIf="action !== 'visualize'">
+            <button class="btn btn-success" (click)="onSave()">Salvar</button>
+            <button class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+          </div>
+          <div *ngIf="action == 'visualize'">
+            <button class="btn btn-primary btn-alterar" (click)="onAlterar()">Alterar</button>
+            <button class="btn btn-danger" (click)="onCancel()">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Marque o ponto onde seu cliente está:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="client != undefined && client.lat != 0 && client.lng != 0">
+          <google-map width="100%" height="100%" [center]="center" [options]="options"
+            [zoom]="client!= undefined ? zoom : 12" (mapClick)="addMarker($event)">
+            <ng-container *ngIf="markerPosition == null">
+              <map-marker [position]="client" [options]="markerOptions"></map-marker>
+            </ng-container>
+            <ng-container *ngIf="markerPosition != null">
+              <map-marker [position]="markerPosition" [options]="markerOptions"></map-marker>
+            </ng-container>
+          </google-map>
+        </ng-container>
+        <ng-container *ngIf="client != undefined">
+          <ng-container *ngIf="client.lat == 0 && client.lng == 0">
+            <google-map width="100%" height="100%" [center]="center" [zoom]="zoom" [options]="options" [center]="center"
+              (mapClick)="addMarker($event)">
+              <ng-container *ngIf="markerPosition == null">
+                <map-marker [position]="client" [options]="markerOptions"></map-marker>
+              </ng-container>
+              <ng-container *ngIf="markerPosition != null">
+                <map-marker [position]="markerPosition" [options]="markerOptions"></map-marker>
+              </ng-container>
+            </google-map>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="client == undefined">
+          <google-map width="100%" height="100%" [center]="client!= undefined ? client : center" [zoom]="zoom"
+            [options]="options" (mapClick)="addMarker($event)">
+            <ng-container *ngIf="markerPosition == null">
+              <map-marker [position]="client" [options]="markerOptions"></map-marker>
+            </ng-container>
+            <ng-container *ngIf="markerPosition != null">
+              <map-marker [position]="markerPosition" [options]="markerOptions"></map-marker>
+            </ng-container>
+          </google-map>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onSaveLatLng(markerPosition.lat, markerPosition.lng)" type="button" class="btn btn-success"
+          data-bs-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

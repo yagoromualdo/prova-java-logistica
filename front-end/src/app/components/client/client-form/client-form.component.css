@@ -1,0 +1,81 @@
+.card {
+  width: calc(100vw - 8rem);
+  padding: 0rem 2rem 1rem 2rem;
+  margin-top: calc(2rem + 68.5px);
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.732), 0 0 0px rgba(0, 0, 0, 0.05);
+}
+
+.item {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.btn-success,
+.btn-alterar {
+  margin-right: 0.5rem;
+}
+
+.button-open-maps {
+  width: 100%;
+}
+
+.col-mapa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.none-square {
+  font-weight: bold;
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.modal-body {
+  width: 100%;
+  height: calc((100vh - 3.4rem) - 134px);
+}
+
+.modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+::ng-deep .pac-container {
+  z-index: 9999999;
+}
+
+.label-search {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.row-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.modal-footer {
+  margin-top: 1rem;
+}

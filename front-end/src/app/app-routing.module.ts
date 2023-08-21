@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ClientFormComponent
   },
   {
-    path: 'client/view/:idClient',
+    path: 'client/visualize/:idClient',
     component: ClientFormComponent
   },
   {

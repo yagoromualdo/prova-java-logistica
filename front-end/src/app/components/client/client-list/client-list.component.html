@@ -1,2 +1,73 @@
-<p>client-list works!</p>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1>Clientes</h1>
+      <div class="row row-primary">
+        <div class="col-md-4">
+          <input type="text" [(ngModel)]="searchText" class="form-control search-field" placeholder="Pesquisar">
+        </div>
+        <div class="col-md-4">
+          <div class="buttons">
+            <div [routerLink]="['maps']" class="btn btn-primary">
+              Visualizar Mapa
+            </div>
+            <button [routerLink]="['create']" class="btn btn-success">
+              Cadatrar
+            </button>
+          </div>
+        </div>
+      </div>
 
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="
+                let client of clientList
+                |
+                filter: searchText
+                  | paginate
+                    : {
+                        id: 'pagination',
+                        itemsPerPage: tableSize,
+                        currentPage: page,
+                        totalItems: count
+                      };
+                let i = index
+              ">
+            <th scope="row">{{ client.id }}</th>
+            <td>
+              {{ client.name }}
+            </td>
+            <td>
+              {{ client.cnpj }}
+            </td>
+            <td>
+              <button type="button" class="btn btn-text" [routerLink]="['visualize', client.id]">
+                <i class="bi bi-eye"></i>
+              </button>
+              <button type="button" class="btn btn-text" [routerLink]="['update', client.id]">
+                <i class="bi bi-pencil-fill"></i>
+              </button>
+              <button type="button" class="btn btn-text" (click)="deleteCLient(client.id)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <pagination-controls id="pagination" previousLabel="Anterior" nextLabel="Próximo"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>

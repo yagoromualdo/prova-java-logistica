@@ -1,1 +1,30 @@
-<p>client-maps works!</p>
+<div class="container-google-maps">
+  <div class="buttons">
+    <button class="btn btn-primary" [routerLink]="['../']">
+      Visualizar listagem
+    </button>
+    <button class="btn btn-success" [routerLink]="['../create']">
+      Cadastrar
+    </button>
+  </div>
+  <google-map width="100vw" height="100vh" [center]="clientList[0]" [zoom]="zoom" [options]="options">
+    <ng-container *ngFor="let client of clientList">
+      <map-marker #marker="mapMarker" [position]="client" [options]="markerOptions"
+        (mapClick)="openInfoWindowClient(marker, client.name, client.cnpj, client.telephone, client.email, client.lat, client.lng)"></map-marker>
+    </ng-container>
+    <map-info-window>
+      <div class="info-window">
+        <h6>{{clientName}}</h6>
+        <br>
+        <p>{{clientCnpj}}</p>
+        <ng-container *ngIf="clientEmail != null && clientEmail != undefined">
+          <p>{{clientEmail}}</p>
+        </ng-container>
+        <ng-container *ngIf="clientTelephone != null && clientTelephone != undefined">
+          <p>{{clientTelephone}}</p>
+        </ng-container>
+        <p>{{clientLat}}, {{clientLng}}</p>
+      </div>
+    </map-info-window>
+  </google-map>
+</div>
